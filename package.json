@@ -1,0 +1,24 @@
+{
+  "name": "vsh-api",
+  "version": "0.0.1",
+  "description": "An API back-end for the VSH project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lodi-g/vsh-api.git"
+  },
+  "author": "lodi-g",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lodi-g/vsh-api/issues"
+  },
+  "homepage": "https://github.com/lodi-g/vsh-api#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.4"
+  }
+}
