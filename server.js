@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
@@ -9,12 +10,14 @@ const port = process.env.PORT || 3000;
 mongoose.connect(mongoUri, (err) => {
   if (err)
     throw new Error(err);
-
-  const db = mongoose.connection;
 })
+
+mongoose.Promise = Promise;
 
 app.set('json spaces', 2);
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use((req, res, next) => {
   req.headers['if-none-match'] = 'no-match-for-this';

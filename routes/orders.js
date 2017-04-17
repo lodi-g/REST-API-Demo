@@ -7,6 +7,5 @@ module.exports = (app) => {
   app.route("/orders/:orderId")
     .get(orders.findId)
     .put(orders.updateId)
-    .patch(orders.patchId)
     .delete(orders.deleteId);
 }

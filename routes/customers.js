@@ -9,6 +9,5 @@ module.exports = (app) => {
   app.route("/customers/:customerId")
     .get(customers.findId)
     .put(customers.updateId)
-    .patch(customers.patchId)
     .delete(customers.deleteId);
 }

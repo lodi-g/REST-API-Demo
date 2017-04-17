@@ -2,11 +2,13 @@ const mongoose = require("mongoose");
 const Orders = mongoose.model("Orders");
 
 var findAll = (req, res) => {
-  Orders.find({}, (err, orders) => {
-    if (err)
-      return res.status(503).json({});
-    return res.status(200).json(orders);
-  });
+  Orders.find({})
+    .then((orders) => {
+      res.status(200).json(orders);
+    })
+    .catch((err) => {
+      res.status(503).json(err);
+    });
 }
 
 var findByCustomer = (req, res) => {
@@ -22,10 +24,6 @@ var findId = (req, res) => {
 }
 
 var updateId = (req, res) => {
-  res.status(200).send({});
-}
-
-var patchId = (req, res) => {
   res.status(200).send({});
 }
 
