@@ -1,0 +1,38 @@
+GET customers/
+  All customers
+
+POST customers/
+  New customer
+
+GET customers/:customerId
+  The customerId customer
+
+PUT customers/:customerId
+  Update customer customerId
+
+PATCH customers/:customerId
+  Patch customer customerId
+
+DELETE customers/:customerId
+  Delete customer customerId
+
+GET customers/:customerId/orders
+  Orders of customer customerId
+
+POST customers/:customerId/orders
+  New order for customer customerId
+
+GET orders/
+  All orders
+
+GET orders/:orderId
+  Order orderId
+
+PUT orders/:orderId
+  Update order orderId
+
+PATCH orders/:orderId
+  Patch order orderId
+
+DELETE orders/:orderId
+  Delete order orderId

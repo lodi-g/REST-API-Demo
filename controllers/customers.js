@@ -1,7 +1,12 @@
-const customersModel = require("../models/customer");
+const mongoose = require("mongoose");
+const Customers = mongoose.model("Customers");
 
 var findAll = (req, res) => {
-  res.status(200).send({});
+  Customers.find({}, (err, customers) => {
+    if (err)
+      return res.status(503).json({});
+    return res.status(200).json(customers);
+  });
 }
 
 var create = (req, res) => {

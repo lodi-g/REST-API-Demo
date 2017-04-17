@@ -1,0 +1,9 @@
+{
+  "_id": ObjectId(""),
+  "customer_id": ObjectId(""),
+  "amount": 50,
+  "type": "Portrait",
+  "description": "",
+  "color": "#fff",
+  "date": ISODate("")
+}
