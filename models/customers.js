@@ -15,7 +15,10 @@ const CustomersSchema = new Schema({
   },
   total_orders: { type: Number, default: 0, min: 0 },
   total_amount: { type: Number, default: 0, min: 0 },
-  orders: { type: Array, default: [] }
+  orders: [{
+    type: Schema.ObjectId,
+    ref: "Orders"
+  }]
 });
 
 mongoose.model("Customers", CustomersSchema);

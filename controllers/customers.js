@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const errors = require("./errors");
 const Customers = mongoose.model("Customers");
 const objectId = mongoose.Types.ObjectId;
 
@@ -43,9 +44,12 @@ var findId = (req, res) => {
   let id = req.params.customerId;
 
   if (!objectId.isValid(id))
-    return res.status(400).json();
+    return res.status(400).json(errors.oid_invalid);
+
   Customers.findOne({ _id: id })
     .then((customer) => {
+      if (customer === null)
+        return res.status(404).json(errors.oid_notfound);
       res.status(200).json(customer);
     })
     .catch((err) => {
@@ -54,14 +58,29 @@ var findId = (req, res) => {
 }
 
 var updateId = (req, res) => {
-  res.status(200).send({});
+  let id = req.params.customerId;
+
+  if (!objectId.isValid(id))
+    return res.status(400).json(errors.oid_invalid);
+
+  let query = { _id: id };
+  Customers.findOneAndUpdate(query, req.body, { new: true })
+    .then((customer) => {
+      if (customer === null)
+        return res.status(404).json(errors.oid_notfound);
+      res.status(200).json(customer);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    })
 }
 
 var deleteId = (req, res) => {
   let id = req.params.customerId;
 
   if (!objectId.isValid(id))
-    return res.status(400).json();
+    return res.status(400).json(errors.oid_invalid);
+
   Customers.remove({ _id: id })
     .then(() => {
       res.status(204).json();
@@ -76,6 +95,5 @@ module.exports = {
   create,
   findId,
   updateId,
-  patchId,
   deleteId
 }

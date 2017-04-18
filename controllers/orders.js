@@ -37,6 +37,5 @@ module.exports = {
   create,
   findId,
   updateId,
-  patchId,
   deleteId
 }
