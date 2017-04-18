@@ -10,9 +10,6 @@ GET customers/:customerId
 PUT customers/:customerId
   Update customer customerId
 
-PATCH customers/:customerId
-  Patch customer customerId
-
 DELETE customers/:customerId
   Delete customer customerId
 
@@ -30,9 +27,6 @@ GET orders/:orderId
 
 PUT orders/:orderId
   Update order orderId
-
-PATCH orders/:orderId
-  Patch order orderId
 
 DELETE orders/:orderId
   Delete order orderId
