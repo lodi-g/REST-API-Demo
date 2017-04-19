@@ -12,9 +12,8 @@
     },
   "total_orders": 4,
   "total_amount": 275,
+  "date_added": ISODate(""),
   "orders": [
-    ObjectId(""),
-    ObjectId(""),
     ObjectId(""),
     ObjectId("")
   ]

@@ -20,6 +20,7 @@ var createNew = (req, res) => {
     profile: {},
     total_orders: 0,
     total_amount: 0,
+    date_added: new Date(),
     orders: []
   });
 
