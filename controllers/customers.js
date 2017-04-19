@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const util = require("util");
 const errors = require("./errors");
 const Customers = mongoose.model("Customers");
 const Orders = mongoose.model("Orders");
@@ -24,7 +23,7 @@ var createNew = (req, res) => {
     orders: []
   });
 
-  customer.profile = util._extend(customer.profile, req.body);
+  Object.assign(customer.profile, req.body);
 
   customer.save()
     .then((customer) => {
@@ -44,7 +43,7 @@ var findById = (req, res) => {
 var updateById = (req, res) => {
   const customer = req.customer;
 
-  customer.profile = util._extend(customer.profile, req.body);
+  Object.assign(customer.profile, req.body);
 
   customer.save()
     .then((customer) => {
@@ -74,7 +73,7 @@ var deleteById = (req, res) => {
 }
 
 var verifyId = (req, res, next) => {
-  let id = req.params.customerId;
+  const id = req.params.customerId;
 
   if (!objectId.isValid(id))
     return res.status(400).json(errors.oid_invalid);
