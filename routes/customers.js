@@ -4,10 +4,11 @@ module.exports = (app) => {
 
   app.route("/customers")
     .get(customers.findAll)
-    .post(customers.create);
+    .post(customers.createNew);
 
   app.route("/customers/:customerId")
-    .get(customers.findId)
-    .put(customers.updateId)
-    .delete(customers.deleteId);
+    .all(customers.verifyId)
+    .get(customers.findById)
+    .put(customers.updateById)
+    .delete(customers.deleteById);
 }

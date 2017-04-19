@@ -5,7 +5,7 @@ module.exports = (app) => {
     .get(orders.findAll);
 
   app.route("/orders/:orderId")
-    .get(orders.findId)
-    .put(orders.updateId)
-    .delete(orders.deleteId);
+    .get(orders.findById)
+    .put(orders.updateById)
+    .delete(orders.deleteById);
 }
