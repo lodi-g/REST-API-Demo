@@ -1,20 +1,20 @@
 {
-  "_id": ObjectId(""),
-  "profile": {
-      "first_name": "Gregoire",
-      "last_name": "Lodi",
-      "age": 17,
-      "address": "137 TER E Rue de Montagny",
-      "post_code": "69008",
-      "city": "Lyon",
-      "phone": "0612345678",
-      "color": "#fff"
+  '_id': ObjectId(''),
+  'profile': {
+      'first_name': 'Gregoire',
+      'last_name': 'Lodi',
+      'age': 17,
+      'address': '137 TER E Rue de Montagny',
+      'post_code': '69008',
+      'city': 'Lyon',
+      'phone': '0612345678',
+      'color': '#fff'
     },
-  "total_orders": 4,
-  "total_amount": 275,
-  "date_added": ISODate(""),
-  "orders": [
-    ObjectId(""),
-    ObjectId("")
+  'total_orders': 4,
+  'total_amount': 275,
+  'date_added': ISODate(''),
+  'orders': [
+    ObjectId(''),
+    ObjectId('')
   ]
 }

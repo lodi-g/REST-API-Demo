@@ -13,7 +13,7 @@ A RESTful API for a private project. Handles a basic customers / orders approach
 
 * POST /customers
   * Creates a new customer. See `example_customer.json` for parameters. You can only use the `profile` parameters and they shall **not** be in a `profile` object. `last_name` and `first_name` are mandatory.
-  * Example body: `{ "first_name": "John", last_name": "Doe", "age": 19 }`
+  * Example body: `{ 'first_name': 'John', last_name': 'Doe', 'age': 19 }`
 
 
 * GET /customers/{customerId}
@@ -34,7 +34,7 @@ A RESTful API for a private project. Handles a basic customers / orders approach
 
 * POST /customers/{customerId}/orders
   * Creates a new order for the specified customer. See `example_order.json` for parameters. `amount` and `type` are mandatory. You must not specify `_id`, `customer_id` and `date`.
-  * Example body: ` { "type": "Marriage", "amount": 50, "description": "Was cool." } `
+  * Example body: ` { 'type': 'Marriage', 'amount': 50, 'description': 'Was cool.' } `
 
 
 * GET /orders

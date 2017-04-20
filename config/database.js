@@ -1,1 +1,1 @@
-module.exports = "mongodb://localhost/vsh-api";
+module.exports = 'mongodb://localhost/vsh-api';

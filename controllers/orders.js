@@ -1,9 +1,10 @@
-const mongoose = require("mongoose");
-const errors = require("./errors");
-const Orders = mongoose.model("Orders");
-const objectId = mongoose.Types.ObjectId;
+const mongoose = require('mongoose');
+const errors = require('./errors');
 
-var findAll = (req, res) => {
+const Orders = mongoose.model('Orders');
+const ObjectId = mongoose.Types.ObjectId;
+
+const findAll = (req, res) => {
   Orders.find({})
     .then((orders) => {
       res.status(200).json(orders);
@@ -11,9 +12,9 @@ var findAll = (req, res) => {
     .catch((err) => {
       res.status(500).json(err);
     });
-}
+};
 
-var findByCustomer = (req, res) => {
+const findByCustomer = (req, res) => {
   const customer = req.customer;
 
   Orders.find({ customer_id: customer._id })
@@ -23,12 +24,12 @@ var findByCustomer = (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
-var createNew = (req, res) => {
+const createNew = (req, res) => {
   const customer = req.customer;
   const order = new Orders({
-    _id: new objectId,
+    _id: new ObjectId(),
     customer_id: customer.id,
     amount: req.body.amount,
     type: req.body.type,
@@ -51,15 +52,15 @@ var createNew = (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
-var findById = (req, res) => {
+const findById = (req, res) => {
   const order = req.order;
 
   res.status(200).json(order);
-}
+};
 
-var updateById = (req, res) => {
+const updateById = (req, res) => {
   const order = req.order;
 
   Object.assign(order, req.body);
@@ -71,9 +72,9 @@ var updateById = (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
-var deleteById = (req, res) => {
+const deleteById = (req, res) => {
   const order = req.order;
 
   order.remove()
@@ -83,12 +84,12 @@ var deleteById = (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
-var verifyId = (req, res, next) => {
+const verifyId = (req, res, next) => {
   const id = req.params.orderId;
 
-  if (!objectId.isValid(id))
+  if (!ObjectId.isValid(id))
     return res.status(400).json(errors.oid_invalid);
 
   Orders.findOne({ _id: id })
@@ -96,12 +97,12 @@ var verifyId = (req, res, next) => {
       if (order === null)
         return res.status(404).json(errors.oid_notfound);
       req.order = order;
-      next()
+      return next();
     })
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
 module.exports = {
   findAll,
@@ -111,4 +112,4 @@ module.exports = {
   updateById,
   deleteById,
   verifyId
-}
+};

@@ -1,32 +1,43 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const mongoose = require("mongoose");
+const express = require('express');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const errors = require('./controllers/errors');
+const mongoUri = require('./config/database');
 
-const mongoUri = require("./config/database");
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect(mongoUri, (err) => {
-  if (err)
-    throw new Error(err);
-})
-
 mongoose.Promise = Promise;
+
+mongoose.connect(mongoUri)
+  .catch((err) => {
+    throw new Error(err);
+  });
+
 
 app.set('json spaces', 2);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(morgan("dev"));
+
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError)
+    return res.status(400).json(errors.json_invalid);
+  else if (err)
+    return res.status(500).json(err);
+  return next();
+});
+
+app.use(morgan('dev'));
 app.use((req, res, next) => {
   req.headers['if-none-match'] = 'no-match-for-this';
   next();
 });
 
-require("./models/customers");
-require("./models/orders");
-require("./routes")(app);
+require('./models/customers');
+require('./models/orders');
+require('./routes')(app);
 
 app.listen(port, (err) => {
   if (err)

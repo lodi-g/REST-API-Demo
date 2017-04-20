@@ -1,10 +1,11 @@
-const mongoose = require("mongoose");
-const errors = require("./errors");
-const Customers = mongoose.model("Customers");
-const Orders = mongoose.model("Orders");
-const objectId = mongoose.Types.ObjectId;
+const mongoose = require('mongoose');
+const errors = require('./errors');
 
-var findAll = (req, res) => {
+const Customers = mongoose.model('Customers');
+const Orders = mongoose.model('Orders');
+const ObjectId = mongoose.Types.ObjectId;
+
+const findAll = (req, res) => {
   Customers.find({})
     .then((customers) => {
       res.status(200).json(customers);
@@ -12,11 +13,11 @@ var findAll = (req, res) => {
     .catch((err) => {
       res.status(500).json(err);
     });
-}
+};
 
-var createNew = (req, res) => {
+const createNew = (req, res) => {
   const customer = new Customers({
-    _id: new objectId,
+    _id: new ObjectId(),
     profile: {},
     total_orders: 0,
     total_amount: 0,
@@ -33,15 +34,15 @@ var createNew = (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
-var findById = (req, res) => {
+const findById = (req, res) => {
   const customer = req.customer;
 
   res.status(200).json(customer);
-}
+};
 
-var updateById = (req, res) => {
+const updateById = (req, res) => {
   const customer = req.customer;
 
   Object.assign(customer.profile, req.body);
@@ -53,9 +54,9 @@ var updateById = (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
-var deleteById = (req, res) => {
+const deleteById = (req, res) => {
   const customer = req.customer;
 
   customer.remove()
@@ -66,17 +67,17 @@ var deleteById = (req, res) => {
         })
         .catch((err) => {
           res.status(400).json(err);
-        })
+        });
     })
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
-var verifyId = (req, res, next) => {
+const verifyId = (req, res, next) => {
   const id = req.params.customerId;
 
-  if (!objectId.isValid(id))
+  if (!ObjectId.isValid(id))
     return res.status(400).json(errors.oid_invalid);
 
   Customers.findOne({ _id: id })
@@ -84,12 +85,12 @@ var verifyId = (req, res, next) => {
       if (customer === null)
         return res.status(404).json(errors.oid_notfound);
       req.customer = customer;
-      next()
+      return next();
     })
     .catch((err) => {
       res.status(400).json(err);
     });
-}
+};
 
 module.exports = {
   findAll,
@@ -98,4 +99,4 @@ module.exports = {
   updateById,
   deleteById,
   verifyId
-}
+};
