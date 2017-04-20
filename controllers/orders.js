@@ -39,6 +39,8 @@ const createNew = (req, res) => {
   });
 
   customer.orders.push(order._id);
+  customer.total_orders += 1;
+  customer.total_amount += order.amount;
   order.save()
     .then((order) => {
       customer.save()
