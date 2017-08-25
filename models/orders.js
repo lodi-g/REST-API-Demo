@@ -12,4 +12,4 @@ const OrdersSchema = new Schema({
   date: { type: Date, required: true },
 });
 
-mongoose.model('Orders', OrdersSchema);
+module.exports = mongoose.model('Orders', OrdersSchema);

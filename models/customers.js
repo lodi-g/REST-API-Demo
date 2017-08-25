@@ -23,4 +23,4 @@ const CustomersSchema = new Schema({
   }]
 });
 
-mongoose.model('Customers', CustomersSchema);
+module.exports = mongoose.model('Customers', CustomersSchema);

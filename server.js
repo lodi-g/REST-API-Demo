@@ -10,11 +10,10 @@ const port = process.env.PORT || 3000;
 
 mongoose.Promise = Promise;
 
-mongoose.connect(mongoUri)
+mongoose.connect(mongoUri, { useMongoClient: true })
   .catch((err) => {
     throw new Error(err);
   });
-
 
 app.set('json spaces', 2);
 
@@ -29,7 +28,9 @@ app.use((err, req, res, next) => {
   return next();
 });
 
-app.use(morgan('dev'));
+if (process.env.NODE_ENV !== 'testing')
+  app.use(morgan('dev'));
+
 app.use((req, res, next) => {
   req.headers['if-none-match'] = 'no-match-for-this';
   next();
@@ -44,3 +45,5 @@ app.listen(port, (err) => {
     throw new Error(err);
   console.log(`Server started on port ${port}`);
 });
+
+module.exports = app;

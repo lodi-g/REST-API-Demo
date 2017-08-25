@@ -1,14 +1,14 @@
 module.exports = {
   oid_invalid: {
-    type: 'ObjectIdException',
+    error: 'ObjectIdException',
     message: 'The provided ObjectId is not a valid ObjectId',
   },
   oid_notfound: {
-    type: 'ObjectIdException',
+    error: 'ObjectIdException',
     message: 'The provided ObjectId was not found',
   },
   json_invalid: {
-    type: 'SyntaxError',
+    error: 'SyntaxError',
     message: 'Failed to parse JSON',
   },
 };
