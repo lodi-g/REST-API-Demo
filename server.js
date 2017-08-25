@@ -6,7 +6,7 @@ const errors = require('./controllers/errors');
 const mongoUri = require('./config/database');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 mongoose.Promise = Promise;
 
