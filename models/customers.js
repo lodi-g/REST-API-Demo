@@ -12,15 +12,15 @@ const CustomersSchema = new Schema({
     post_code: { type: String, trim: true },
     city: { type: String, trim: true },
     phone: { type: String, trim: true },
-    color: { type: String, trim: true, default: '#fff' }
+    color: { type: String, trim: true, default: '#fff' },
   },
   total_orders: { type: Number, default: 0, min: 0 },
   total_amount: { type: Number, default: 0, min: 0 },
   date_added: { type: Date },
   orders: [{
     type: Schema.ObjectId,
-    ref: 'Orders'
-  }]
+    ref: 'Orders',
+  }],
 });
 
 module.exports = mongoose.model('Customers', CustomersSchema);

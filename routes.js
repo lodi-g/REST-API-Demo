@@ -1,5 +1,9 @@
+const mCustomers = require('./routes/customers');
+const oCustomers = require('./routes/customers/orders');
+const mOrders = require('./routes/orders');
+
 module.exports = (app) => {
-  require('./routes/customers')(app);
-  require('./routes/customers/orders')(app);
-  require('./routes/orders')(app);
+  mCustomers(app);
+  oCustomers(app);
+  mOrders(app);
 };

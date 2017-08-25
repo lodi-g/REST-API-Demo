@@ -20,13 +20,19 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "mongoose": "^4.9.4"
+    "mongoose": "^4.9.4",
+    "morgan": "^1.8.1"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "chai": "^4.1.1",
     "chai-http": "^3.0.0",
     "mocha": "^3.5.0",
     "morgan": "^1.8.1",
     "supertest": "^3.0.0"
+=======
+    "eslint-config-airbnb-base": "^11.3.2",
+    "eslint-plugin-import": "^2.7.0"
+>>>>>>> e096f3bdfc6f94da761211257cd61821f4dd1034
   }
 }
