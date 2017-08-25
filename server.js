@@ -22,10 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use((err, req, res, next) => {
-  if (err instanceof SyntaxError)
+  if (err instanceof SyntaxError) {
     return res.status(400).json(errors.json_invalid);
-  else if (err)
+  } else if (err) {
     return res.status(500).json(err);
+  }
   return next();
 });
 
@@ -40,7 +41,8 @@ require('./models/orders');
 require('./routes')(app);
 
 app.listen(port, (err) => {
-  if (err)
+  if (err) {
     throw new Error(err);
+  }
   console.log(`Server started on port ${port}`);
 });

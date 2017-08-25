@@ -22,14 +22,14 @@ const createNew = (req, res) => {
     total_orders: 0,
     total_amount: 0,
     date_added: new Date(),
-    orders: []
+    orders: [],
   });
 
   Object.assign(customer.profile, req.body);
 
   customer.save()
-    .then((customer) => {
-      res.status(201).json(customer);
+    .then((c) => {
+      res.status(201).json(c);
     })
     .catch((err) => {
       res.status(400).json(err);
@@ -48,8 +48,8 @@ const updateById = (req, res) => {
   Object.assign(customer.profile, req.body);
 
   customer.save()
-    .then((customer) => {
-      res.status(200).json(customer);
+    .then((c) => {
+      res.status(200).json(c);
     })
     .catch((err) => {
       res.status(400).json(err);
@@ -77,13 +77,15 @@ const deleteById = (req, res) => {
 const verifyId = (req, res, next) => {
   const id = req.params.customerId;
 
-  if (!ObjectId.isValid(id))
+  if (!ObjectId.isValid(id)) {
     return res.status(400).json(errors.oid_invalid);
+  }
 
   Customers.findOne({ _id: id })
     .then((customer) => {
-      if (customer === null)
+      if (customer === null) {
         return res.status(404).json(errors.oid_notfound);
+      }
       req.customer = customer;
       return next();
     })
@@ -98,5 +100,5 @@ module.exports = {
   findById,
   updateById,
   deleteById,
-  verifyId
+  verifyId,
 };
