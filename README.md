@@ -2,8 +2,12 @@
 
 A RESTful API for a private project. Handles a basic customers / orders approach.
 
+## How to run
+* Dabase server: `docker run -p 27017:27017 -v /var/lib/mongodb:/data/db -v /var/lib/mongodb/cert:/data/cert --name mongo -d mongo mongod --auth --sslMode requireSSL --sslPEMKeyFile /data/cert/mongodb.pem` (you need to have a valid cert)
+* Node server: `docker-compose up --build`
+
 ## Built with
-* Node.JS v7.7.3
+* Node.JS v8.4.0
 * MongoDB v3.4.1
 
 ## Documentation
