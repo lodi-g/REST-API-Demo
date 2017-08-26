@@ -3,14 +3,17 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const errors = require('./controllers/errors');
-const mongoUri = require('./config/database');
+const mongoConfig = require('./config/database');
 
 const app = express();
 const port = 3000;
 
 mongoose.Promise = Promise;
 
-mongoose.connect(mongoUri, { useMongoClient: true })
+mongoose.connect(mongoConfig.uri, mongoConfig.options)
+  .then(() => {
+    console.log(`Successfully connected to ${mongoConfig.uri}`)
+  })
   .catch((err) => {
     throw new Error(err);
   });
